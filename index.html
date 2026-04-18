@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modern UI Portfolio</title>
+
+<style>
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: white;
+  overflow-x: hidden;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+  width: 100%;
+  padding: 15px 30px;
+  backdrop-filter: blur(15px);
+  background: rgba(255,255,255,0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+/* ================= LAYOUT ================= */
+.main {
+  display: flex;
+  margin-top: 70px;
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar {
+  width: 220px;
+  height: calc(100vh - 70px);
+  backdrop-filter: blur(15px);
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  position: fixed;
+  left: 0;
+}
+
+.nav-link {
+  padding: 10px;
+  border-radius: 10px;
+  display: block;
+  color: white;
+  text-decoration: none;
+  margin: 10px 0;
+  opacity: 0.8;
+  transition: 0.3s;
+}
+
+.nav-link:hover {
+  opacity: 1;
+  transform: translateX(5px);
+}
+
+/* ACTIVE LINK */
+.active-link {
+  background: rgba(255, 106, 0, 0.3);
+  box-shadow: 0 0 15px rgba(255, 106, 0, 0.4);
+  transform: translateX(5px);
+  font-weight: bold;
+}
+
+/* ================= CONTENT ================= */
+.content {
+  margin-left: 240px;
+  padding: 40px;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ================= PAGES ================= */
+.page {
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  transform: translateX(40px);
+  transition: all 0.5s ease;
+  pointer-events: none;
+}
+
+.page.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+/* ================= CARDS ================= */
+.card {
+  background: rgba(255,255,255,0.1);
+  padding: 30px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  margin-bottom: 20px;
+}
+
+/* ================= GALLERY ================= */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.img-box {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  background: rgba(255,255,255,0.05);
+  transition: 0.3s;
+}
+
+.img-box img {
+  width: 100%;
+  display: block;
+  transition: 0.4s ease;
+}
+
+.img-box:hover img {
+  transform: scale(1.2);
+}
+
+.img-box:hover {
+  transform: translateY(-5px);
+}
+
+/* IMAGE LABEL */
+.img-label {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(0,0,0,0.6);
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.img-box:hover .img-label {
+  opacity: 1;
+}
+
+/* ================= SETTINGS LIST STYLE ================= */
+.card ul {
+  margin-top: 10px;
+  line-height: 1.8;
+  opacity: 0.9;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 900px) {
+  .sidebar { width: 180px; }
+  .content { margin-left: 200px; }
+  .gallery { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .sidebar {
+    position: absolute;
+    left: -100%;
+  }
+
+  .content {
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <h2>MyDesign</h2>
+</div>
+
+<div class="main">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+  <a href="#" class="nav-link active-link" onclick="navigate('home', this)">🏠 Home</a>
+  <a href="#" class="nav-link" onclick="navigate('projects', this)">📁 Projects</a>
+  <a href="#" class="nav-link" onclick="navigate('gallery', this)">🖼️ Gallery</a>
+  <a href="#" class="nav-link" onclick="navigate('settings', this)">⚙️ Settings</a>
+
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- HOME -->
+  <section class="page active" id="home">
+    <div class="card">Welcome to your modern UI website 🚀</div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="page" id="projects">
+    <div class="card">Here are your projects 📁</div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="page" id="gallery">
+
+    <div class="card">
+      <h2>Gallery</h2>
+      <p>My creative works and visuals.</p>
+    </div>
+
+    <div class="gallery">
+
+      <div class="img-box">
+        <img src="image2.jpg">
+        <div class="img-label">My Photo 1</div>
+      </div>
+
+      <div class="img-box">
+        <img src="image3.jpg">
+        <div class="img-label">My Photo 2</div>
+      </div>
+
+      <div class="img-box">
+        <img src="image4.jpg">
+        <div class="img-label">My Photo 3</div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SETTINGS -->
+  <section class="page" id="settings">
+
+    <div class="card">
+      <h2>Settings ⚙️</h2>
+      <p>Manage your website preferences and information.</p>
+    </div>
+
+    <div class="card">
+      <h3>📝 Notes</h3>
+      <ul>
+        <li>This is a practice web design project</li>
+        <li>Sidebar uses JavaScript page switching</li>
+        <li>Gallery images are stored locally</li>
+        <li>File names must match exactly</li>
+        <li>You can add more pages anytime</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>⚡ System Info</h3>
+      <p>Design Version: 1.0</p>
+      <p>UI Style: Glassmorphism + Gradient UI</p>
+      <p>Status: Active</p>
+    </div>
+
+    <div class="card">
+      <h3>🎯 Tips</h3>
+      <ul>
+        <li>Hover cards for animation effects</li>
+        <li>Use sidebar to switch pages</li>
+        <li>Add more images in gallery folder</li>
+        <li>Keep UI clean and simple</li>
+      </ul>
+    </div>
+
+  </section>
+
+</div>
+
+</div>
+
+<script>
+
+/* PAGE NAVIGATION + ACTIVE LINK */
+function navigate(pageId, element) {
+
+  const pages = document.querySelectorAll(".page");
+
+  pages.forEach(page => {
+    page.classList.remove("active");
+  });
+
+  setTimeout(() => {
+    document.getElementById(pageId).classList.add("active");
+  }, 150);
+
+  const links = document.querySelectorAll(".nav-link");
+
+  links.forEach(link => {
+    link.classList.remove("active-link");
+  });
+
+  element.classList.add("active-link");
+}
+
+</script>
+
+</body>
+</html>
